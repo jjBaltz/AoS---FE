@@ -1,24 +1,18 @@
-// import { Button } from 'react-bootstrap'; // TODO: COMMENT IN FOR AUTH
-// import { signOut } from '../utils/auth'; // TODO: COMMENT IN FOR AUTH
-// import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR AUTH
+import { useEffect, useState } from 'react';
+import UserForm from '../components/forms/UserForm';
+import ReturnUser from '../components/ReturnUser';
+import { checkUser } from '../api/userData';
+import { useAuth } from '../utils/context/authContext';
 
-function Home() {
-  // const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
+export default function Home() {
+  const [member, setMember] = useState(null);
 
-  const user = { displayName: 'Dr. T' }; // TODO: COMMENT OUT FOR AUTH
-  return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.displayName}! </h1>
-    </div>
-  );
+  const { user } = useAuth();
+  useEffect(() => {
+    checkUser(user.uid)
+      .then((result) => setMember(result))
+      .catch(() => setMember(null));
+  }, [user.uid]);
+
+  return member ? <ReturnUser /> : <UserForm />;
 }
-
-export default Home;
