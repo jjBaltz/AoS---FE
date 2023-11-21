@@ -42,3 +42,9 @@ const createMemory = (payload) => new Promise((resolve, reject) => {
     .then((data) => resolve(data))
     .catch(reject);
 });
+
+export {
+  getMemories,
+  getSingleMemory,
+  createMemory
+}
