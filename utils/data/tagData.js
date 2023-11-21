@@ -29,3 +29,8 @@ const getSingleTag = (id) => new Promise((resolve, reject) => {
     .then((data) => resolve(data))
     .catch(reject);
 });
+
+export {
+  getTags,
+  getSingleTag
+}
