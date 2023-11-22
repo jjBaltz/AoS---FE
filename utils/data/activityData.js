@@ -1,4 +1,4 @@
-const dbUrl = 'http://localhost:7271';
+const dbUrl = 'https://localhost:7271';
 
 const getActivities = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/activites`, {
@@ -39,11 +39,11 @@ const getOpenActivities = () => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-     if (data) {
-       resolve(Object.values(data));
-     } else {
-       resolve([]);
-     }
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
     })
     .catch(reject);
 });
@@ -118,5 +118,5 @@ export {
   updateActivity,
   addTagToActivity,
   removeTagFromActivity,
-  addMemoryToActivity
-}
+  addMemoryToActivity,
+};

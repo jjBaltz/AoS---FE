@@ -1,4 +1,4 @@
-const dbUrl = 'http://localhost:7271';
+const dbUrl = 'https://localhost:7271';
 
 const getMemories = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/memories`, {
@@ -46,5 +46,5 @@ const createMemory = (payload) => new Promise((resolve, reject) => {
 export {
   getMemories,
   getSingleMemory,
-  createMemory
-}
+  createMemory,
+};
