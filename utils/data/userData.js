@@ -1,4 +1,4 @@
-const dbUrl = 'http://localhost:7271';
+const dbUrl = 'https://localhost:7271';
 
 const getUsers = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users`, {
@@ -31,7 +31,7 @@ const getSingleUser = (id) => new Promise((resolve, reject) => {
 });
 
 const createUser = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/users`, {
+  fetch(`${dbUrl}/users/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -79,5 +79,5 @@ export {
   getSingleUser,
   createUser,
   updateUser,
-  checkUser
-}
+  checkUser,
+};

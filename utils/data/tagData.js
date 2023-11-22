@@ -1,4 +1,4 @@
-const dbUrl = 'http://localhost:7271';
+const dbUrl = 'https://localhost:7271';
 
 const getTags = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/tags`, {
@@ -32,5 +32,5 @@ const getSingleTag = (id) => new Promise((resolve, reject) => {
 
 export {
   getTags,
-  getSingleTag
-}
+  getSingleTag,
+};
