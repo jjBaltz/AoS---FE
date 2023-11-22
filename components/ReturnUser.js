@@ -1,4 +1,5 @@
 import { useAuth } from '../utils/context/authContext';
+import UserCard from './cards/UserCard';
 
 export default function ReturnUser() {
   const { user } = useAuth();
@@ -12,7 +13,8 @@ export default function ReturnUser() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.displayName}! </h1>
+      {/* Hello {user.displayName} */}
+      <UserCard userObj={user} />
     </div>
   );
 }
