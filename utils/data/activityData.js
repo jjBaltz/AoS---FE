@@ -1,7 +1,7 @@
 const dbUrl = 'https://localhost:7271';
 
 const getActivities = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/activites`, {
+  fetch(`${dbUrl}/activities`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const getOpenActivities = () => new Promise((resolve, reject) => {
 });
 
 const createActivity = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/activities`, {
+  fetch(`${dbUrl}/activities/five`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
