@@ -41,7 +41,7 @@ function ActivityForm({ obj }) {
         .then(() => router.push('/activities'));
     } else {
       const payload = { ...formInput, UID: user.uid };
-      console.log('user payload:', payload);
+      // console.log('user payload:', payload);
       createActivity(payload)
         .then(() => {
           router.push('/activities');
