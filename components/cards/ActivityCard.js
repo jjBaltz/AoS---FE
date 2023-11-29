@@ -16,6 +16,7 @@ function ActivityCard({ activityObj }) {
 
 ActivityCard.propTypes = {
   activityObj: PropTypes.shape({
+    activityId: PropTypes.number,
     description: PropTypes.string,
   }).isRequired,
 };

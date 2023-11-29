@@ -26,7 +26,13 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((data) => {
+      if (data) {
+        resolve((data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
