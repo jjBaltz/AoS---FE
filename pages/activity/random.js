@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-// import Link from 'next/link';
+import Link from 'next/link';
+import { useAuth } from '../../utils/context/authContext';
 import { getOpenActivities } from '../../utils/data/activityData';
 import ActivityCard from '../../components/cards/ActivityCard';
 
 function RandomActivities() {
   const [openActivities, setOpenActivities] = useState();
   const [chosenActivity, setChosenActivity] = useState();
+  const { user } = useAuth();
 
   const Randomize = () => {
     const activity = openActivities[Math.floor(Math.random() * openActivities?.length)];
@@ -15,7 +17,7 @@ function RandomActivities() {
   };
 
   useEffect(() => {
-    getOpenActivities().then(setOpenActivities);
+    getOpenActivities(user.userId).then(setOpenActivities);
   }, []);
 
   return (
@@ -27,9 +29,9 @@ function RandomActivities() {
         ? (
           <>
             <ActivityCard activityObj={chosenActivity} key={chosenActivity.activityId} />
-            {/* <Link href={`/memory/newMemory/${chosenActivity.activityId}`} passHref>
+            <Link href={`/memory/newMemory/${chosenActivity.activityId}`} passHref>
               <Button>Create Memory</Button>
-            </Link> */}
+            </Link>
           </>
         ) : ''}
     </div>

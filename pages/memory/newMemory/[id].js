@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-// import MemoryForm from '../../../components/forms/MemoryForm';
+import MemoryForm from '../../../components/forms/MemoryForm';
 import { getSingleActivity } from '../../../utils/data/activityData';
 import ActivityCard from '../../../components/cards/ActivityCard';
 
@@ -21,7 +21,7 @@ export default function AddMemory() {
         <ActivityCard activityObj={activity} key={activity.activityId} />
       </div>
       <div className="memory-form">
-        {/* <MemoryForm activityId={id} /> */}
+        <MemoryForm activityId={id} />
       </div>
     </>
   );
