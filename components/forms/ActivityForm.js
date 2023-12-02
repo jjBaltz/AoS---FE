@@ -5,7 +5,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createActivity, updateActivity } from '../../utils/data/activityData';
+import { createActivity, getActivities, updateActivity } from '../../utils/data/activityData';
 
 const initialState = {
   description1: '',
@@ -18,10 +18,13 @@ const initialState = {
 
 function ActivityForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [setActivities] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
+    getActivities(user.uid).then(setActivities);
+
     if (obj.id) setFormInput(obj);
   }, [obj]);
 
@@ -37,15 +40,13 @@ function ActivityForm({ obj }) {
     e.preventDefault();
     console.warn(formInput);
     if (obj.id) {
-      updateActivity(formInput)
-        .then(() => router.push('/activities'));
+      updateActivity(formInput).then(() => router.push('/activities'));
     } else {
       const payload = { ...formInput, UID: user.uid };
-      // console.log('user payload:', payload);
-      createActivity(payload)
-        .then(() => {
-          router.push('/activities');
-        });
+      console.log('user payload:', payload);
+      createActivity(payload).then(() => {
+        router.push('/activities');
+      });
     }
   };
 

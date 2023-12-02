@@ -18,6 +18,18 @@ const getActivities = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getActivitiesByUser = (UID) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/activities/users/${UID}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const getSingleActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/activities/${id}`, {
     method: 'GET',
@@ -118,6 +130,7 @@ const addMemoryToActivity = (activityId, memoryId) => new Promise((resolve, reje
 
 export {
   getActivities,
+  getActivitiesByUser,
   getSingleActivity,
   getOpenActivities,
   createActivity,
