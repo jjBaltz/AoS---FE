@@ -20,7 +20,7 @@ export default function NavBarAuth() {
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
-            <Link passHref href="/activity/new">
+            <Link passHref href="/activity/random">
               <Nav.Link>Begin!</Nav.Link>
             </Link>
             <Link passHref href="/activities">

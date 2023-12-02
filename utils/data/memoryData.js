@@ -30,8 +30,8 @@ const getSingleMemory = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createMemory = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/memories`, {
+const createMemory = (activityId, payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/memories/${activityId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
