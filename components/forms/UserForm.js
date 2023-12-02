@@ -41,7 +41,7 @@ function UserForm({ obj }) {
         .then(() => router.push('/index'));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      console.log('user payload:', payload);
+      // console.log('user payload:', payload);
       createUser(payload)
         .then(() => {
           router.push('/activity/new');
