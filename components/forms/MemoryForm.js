@@ -38,7 +38,6 @@ function MemoryForm({ obj }) {
         .then(() => router.push('/memories'));
     } else {
       const payload = { ...formInput, userId: user.userId };
-      console.log('user payload:', payload);
       createMemory(payload)
         .then(() => {
           router.push('/memories');

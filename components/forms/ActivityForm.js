@@ -37,9 +37,6 @@ function ActivityForm({ activityObj }) {
         // eslint-disable-next-line react/prop-types
         tagValueIds.push(activityObj.tags[i].tagId);
       }
-      console.log(tagValueIds);
-      // eslint-disable-next-line react/prop-types
-      console.log(activityObj.tags);
       setTagValues(tagValueIds);
     }
   }, [activityObj]);
@@ -55,11 +52,9 @@ function ActivityForm({ activityObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (activityObj.activityId) {
-      console.log(formInput);
       updateActivity(formInput).then(() => router.push('/activities'));
     } else {
       const payload = { ...formInput, userId: user.userId };
-      console.log(payload);
       createActivity(payload).then((activity) => {
         if (tagValues[0]) {
           tagValues.forEach((tagId) => addTagToActivity(activity.activityId, tagId).then(() => {}));
@@ -72,7 +67,6 @@ function ActivityForm({ activityObj }) {
   const handleToggleClick = (e) => {
     const state = tagValues;
     const id = Number(e.target.htmlFor);
-    console.warn(state);
     if (!state.includes(id)) {
       state.push(id);
       setTagValues(state);
