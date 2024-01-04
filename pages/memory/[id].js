@@ -13,11 +13,10 @@ export default function ViewMemory() {
   const { id } = router.query;
 
   useEffect(() => {
-    getSingleMemory(id).then(setMemoryDetails);
-  }, [id]);
-
-  useEffect(() => {
-    getSingleActivity(id).then(setActivity);
+    getSingleMemory(id).then((mem) => {
+      getSingleActivity(mem.activityId).then(setActivity);
+      setMemoryDetails(mem);
+    });
   }, [id]);
 
   // const createdAt = new Date(memoryDetails.date);
