@@ -36,15 +36,25 @@ const getSingleMemory = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createMemory = (activityId, payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/memories/${activityId}`, {
+const createMemory = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/memories/${payload.activityId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
   })
-    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const deleteMemory = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/memories/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
     .then((data) => resolve(data))
     .catch(reject);
 });
@@ -53,4 +63,5 @@ export {
   getMemories,
   getSingleMemory,
   createMemory,
+  deleteMemory,
 };

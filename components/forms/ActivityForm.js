@@ -1,32 +1,48 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createActivity, getActivities, updateActivity } from '../../utils/data/activityData';
+import {
+  createActivity, getActivities, updateActivity, addTagToActivity,
+}
+  from '../../utils/data/activityData';
 
 const initialState = {
-  description1: '',
-  description2: '',
-  description3: '',
-  description4: '',
-  description5: '',
-  UID: '',
+  userId: 0,
+  description: '',
+  memories: [],
+  tags: [],
 };
 
-function ActivityForm({ obj }) {
+function ActivityForm({ activityObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [setActivities] = useState([]);
+  const [tagValues, setTagValues] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
-    getActivities(user.uid).then(setActivities);
-
-    if (obj.id) setFormInput(obj);
-  }, [obj]);
+    getActivities().then(setActivities);
+    if (activityObj.activityId) {
+      setFormInput(activityObj);
+      const tagValueIds = [];
+      // eslint-disable-next-line react/prop-types
+      for (let i = 0; i < activityObj.tags.length; i++) {
+        // eslint-disable-next-line react/prop-types
+        tagValueIds.push(activityObj.tags[i].tagId);
+      }
+      console.log(tagValueIds);
+      // eslint-disable-next-line react/prop-types
+      console.log(activityObj.tags);
+      setTagValues(tagValueIds);
+    }
+  }, [activityObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,132 +54,86 @@ function ActivityForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(formInput);
-    if (obj.id) {
+    if (activityObj.activityId) {
+      console.log(formInput);
       updateActivity(formInput).then(() => router.push('/activities'));
     } else {
-      const payload = { ...formInput, UID: user.uid };
-      console.log('user payload:', payload);
-      createActivity(payload).then(() => {
+      const payload = { ...formInput, userId: user.userId };
+      console.log(payload);
+      createActivity(payload).then((activity) => {
+        if (tagValues[0]) {
+          tagValues.forEach((tagId) => addTagToActivity(activity.activityId, tagId).then(() => {}));
+        }
         router.push('/activities');
       });
     }
   };
 
+  const handleToggleClick = (e) => {
+    const state = tagValues;
+    const id = Number(e.target.htmlFor);
+    console.warn(state);
+    if (!state.includes(id)) {
+      state.push(id);
+      setTagValues(state);
+      const newTag = { tagId: id };
+      formInput.tags.push(newTag);
+    } else if (state.includes(id)) {
+      const index = state.findIndex((element) => element === id);
+      state.splice(index, 1);
+      setTagValues(state);
+      const i = formInput.tags.findIndex((element) => element.tagId === id);
+      formInput.tags.splice(i, 1);
+    }
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
-      {/* Description INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
         <Form.Control
           type="text"
           placeholder="What Activity Would You Like To Add?"
-          name="description1"
-          value={formInput.description1}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-      <Form>
-        {['radio'].map((type) => (
-          <div key={`inline-${type}`} className="mb-3">
-            <Form.Check
-              inline
-              label="Acts of Service"
-              name="group1"
-              type={type}
-              id={`inline-${type}-1`}
-            />
-            <Form.Check
-              inline
-              label="Quality Time"
-              name="group1"
-              type={type}
-              id={`inline-${type}-2`}
-            />
-            <Form.Check
-              inline
-              label="Words of Affirmation"
-              name="group1"
-              type={type}
-              id={`inline-${type}-3`}
-            />
-            <Form.Check
-              inline
-              label="Physical Touch"
-              name="group1"
-              type={type}
-              id={`inline-${type}-4`}
-            />
-            <Form.Check
-              inline
-              label="Receiving Gifts"
-              name="group1"
-              type={type}
-              id={`inline-${type}-5`}
-            />
-          </div>
-        ))}
-      </Form>
-
-      <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="What Activity Would You Like To Add?"
-          name="description2"
-          value={formInput.description2}
+          name="description"
+          value={formInput.description}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="What Activity Would You Like To Add?"
-          name="description3"
-          value={formInput.description3}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+      <ToggleButtonGroup type="checkbox" value={tagValues}>
+        <ToggleButton id={1} onClick={handleToggleClick} value={1}>
+          Acts of Service
+        </ToggleButton>
+        <ToggleButton id={2} onClick={handleToggleClick} value={2}>
+          Quality Time
+        </ToggleButton>
+        <ToggleButton id={3} onClick={handleToggleClick} value={3}>
+          Words of Affirmation
+        </ToggleButton>
+        <ToggleButton id={4} onClick={handleToggleClick} value={4}>
+          Physical Touch
+        </ToggleButton>
+        <ToggleButton id={5} onClick={handleToggleClick} value={5}>
+          Receiving Gifts
+        </ToggleButton>
+      </ToggleButtonGroup>
 
-      <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="What Activity Would You Like To Add?"
-          name="description4"
-          value={formInput.description4}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="What Activity Would You Like To Add?"
-          name="description5"
-          value={formInput.description5}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit" className="createActivity">{obj.id ? 'Update' : 'Create'} +</Button>
+      <Button type="submit" className="createActivity">{activityObj.activityId ? 'Update' : 'Create'} +</Button>
     </Form>
   );
 }
 
 ActivityForm.propTypes = {
-  obj: PropTypes.shape({
+  activityObj: PropTypes.shape({
     description: PropTypes.string,
-    id: PropTypes.number,
+    activityId: PropTypes.number,
+    UID: PropTypes.string,
   }),
+
 };
 
 ActivityForm.defaultProps = {
-  obj: initialState,
+  activityObj: initialState,
 };
 
 export default ActivityForm;

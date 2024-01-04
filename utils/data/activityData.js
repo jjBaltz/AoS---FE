@@ -18,8 +18,8 @@ const getActivities = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getActivitiesByUser = (UID) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/activities/users/${UID}`, {
+const getActivitiesByUser = (userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/activities/users/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const getOpenActivities = () => new Promise((resolve, reject) => {
 });
 
 const createActivity = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/activities/five`, {
+  fetch(`${dbUrl}/activities`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const createActivity = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateActivity = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/activities/${payload.id}`, {
+  fetch(`${dbUrl}/activities/${payload.activityId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
