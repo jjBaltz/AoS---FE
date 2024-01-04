@@ -12,7 +12,5 @@ export default function EditActivity() {
     getSingleActivity(id).then(setEditActivity);
   }, [id]);
 
-  console.log('id and obj:', id, editActivity);
-
   return (<ActivityForm activityObj={editActivity} />);
 }
