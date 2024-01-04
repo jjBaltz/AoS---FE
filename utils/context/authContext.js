@@ -8,6 +8,7 @@ import React, {
   useState,
 } from 'react';
 import { firebase } from '../client';
+import { getSingleUser } from '../data/userData';
 
 const AuthContext = createContext();
 
@@ -24,7 +25,12 @@ const AuthProvider = (props) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((fbUser) => {
       if (fbUser) {
-        setUser(fbUser);
+        getSingleUser(fbUser.uid).then((dbu) => {
+          const test = { ...dbu, ...fbUser };
+          setUser(test);
+          console.log(user);
+        });
+        // setUser(fbUser);
       } else {
         setUser(false);
       }

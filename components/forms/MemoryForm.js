@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -8,11 +9,8 @@ import { useAuth } from '../../utils/context/authContext';
 import { createMemory } from '../../utils/data/memoryData';
 
 const initialState = {
-  memoryId: 0,
   activityId: 0,
   description: '',
-  UID: '',
-  date: '',
 };
 
 function MemoryForm({ obj }) {
@@ -22,6 +20,8 @@ function MemoryForm({ obj }) {
 
   useEffect(() => {
     if (obj.id) setFormInput(obj);
+
+    initialState.activityId = router.query.id;
   }, [obj]);
 
   const handleChange = (e) => {
@@ -34,13 +34,11 @@ function MemoryForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(formInput);
     if (obj.id) {
       (formInput)
         .then(() => router.push('/memories'));
     } else {
-      const payload = { ...formInput, UID: user.uid };
-      console.log('user payload:', payload);
+      const payload = { ...formInput, userId: user.userId };
       createMemory(payload)
         .then(() => {
           router.push('/memories');
@@ -74,7 +72,6 @@ MemoryForm.propTypes = {
     description: PropTypes.string,
     id: PropTypes.number,
     activityId: PropTypes.number,
-    DateTime: PropTypes,
   }),
 };
 
