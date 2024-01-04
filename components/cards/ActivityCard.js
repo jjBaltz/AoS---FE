@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 
 function ActivityCard({ activityObj }) {
-  console.warn(activityObj);
   return (
     <Card className="card-body d-flex flex-md-row flex-column px-2" style={{ width: '600px', margin: '20px' }}>
       <Card.Body>
