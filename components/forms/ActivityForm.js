@@ -83,38 +83,42 @@ function ActivityForm({ activityObj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="What Activity Would You Like To Add?"
-          name="description"
-          value={formInput.description}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+    <div className="act-form d-flex flex-wrap flex-column align-content-center">
+      <Form onSubmit={handleSubmit}>
+        <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="What Activity Would You Like To Add?"
+            name="description"
+            value={formInput.description}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
 
-      <ToggleButtonGroup type="checkbox" value={tagValues}>
-        <ToggleButton id={1} onClick={handleToggleClick} value={1}>
-          Acts of Service
-        </ToggleButton>
-        <ToggleButton id={2} onClick={handleToggleClick} value={2}>
-          Quality Time
-        </ToggleButton>
-        <ToggleButton id={3} onClick={handleToggleClick} value={3}>
-          Words of Affirmation
-        </ToggleButton>
-        <ToggleButton id={4} onClick={handleToggleClick} value={4}>
-          Physical Touch
-        </ToggleButton>
-        <ToggleButton id={5} onClick={handleToggleClick} value={5}>
-          Receiving Gifts
-        </ToggleButton>
-      </ToggleButtonGroup>
+        <ToggleButtonGroup type="checkbox" value={tagValues}>
+          <ToggleButton style={{ bordercolor: 'white' }} id={1} onClick={handleToggleClick} value={1}>
+            Acts of Service
+          </ToggleButton>
+          <ToggleButton id={2} onClick={handleToggleClick} value={2}>
+            Quality Time
+          </ToggleButton>
+          <ToggleButton id={3} onClick={handleToggleClick} value={3}>
+            Words of Affirmation
+          </ToggleButton>
+          <ToggleButton id={4} onClick={handleToggleClick} value={4}>
+            Physical Touch
+          </ToggleButton>
+          <ToggleButton id={5} onClick={handleToggleClick} value={5}>
+            Receiving Gifts
+          </ToggleButton>
+        </ToggleButtonGroup>
 
-      <Button type="submit" className="createActivity">{activityObj.activityId ? 'Update' : 'Create'} +</Button>
-    </Form>
+        <div className="d-flex flex-wrap flex-column align-content-center">
+          <Button type="submit" className="createActivity">{activityObj.activityId ? 'Update' : 'Create'} +</Button>
+        </div>
+      </Form>
+    </div>
   );
 }
 

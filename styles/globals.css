@@ -1,5 +1,42 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
+@font-face {
+  font-family: mumsies;
+  src: url("Mumsies.ttf") format("truetype");
+}
+@font-face {
+  font-family: painting;
+  src: url("Painting_With_Chocolate.ttf") format("truetype");
+}
+@font-face {
+  font-family: dawning;
+  src: url("DawningDay.ttf") format(truetype)
+}
+@font-face {
+  font-family: marker;
+  src: url("PermanentMarker-Regular.ttf") format(truetype)
+}
+@font-face {
+  font-family: reenie;
+  src: url("ReenieBeanie.ttf") format(truetype)
+}
+@font-face {
+  font-family: fatboyslim;
+  src: url("fatboyslim.ttf") format(truetype)
+}
+@font-face {
+  font-family: brushed;
+  src: url("brushed.ttf") format(truetype)
+}
+@font-face {
+  font-family: khand;
+  src: url("khand.ttf") format(truetype)
+}
+@font-face {
+  font-family: antro;
+  src: url("Antro_Vectra.otf") format(truetype)
+}
+
 html,
 body {
   padding: 0;
@@ -19,4 +56,281 @@ a {
 
 body {
   background-color: white;
+}
+#curve {
+  fill: transparent;
+}
+
+#user-card {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-activity {
+  margin: 40px;
+  width: 10%;
+  background-color: #FF94B2 !important;
+  border-color: #FF94B2 !important;
+  border-radius: 60% 40% 90% 70%;
+}
+.new-activity:hover {
+  background-color: #FF94B2;
+  border-color: #FF94B2;
+}
+
+.play-activity {
+  margin: 40px;
+  width: 10%;
+  background-color: #DF4772 !important;
+  border-color: #DF4772 !important;
+  border-radius: 20% 60% 80% 80%;
+}
+.play-activity:hover {
+  background-color: #DF4772;
+  border-color: #DF4772;
+}
+
+.memories-button {
+  margin: 40px;
+  width: 10%;
+  background-color: #B50033 !important;
+  border-color: #B50033 !important;
+  border-radius: 40% 60% 30% 50%;
+}
+.memories-button:hover {
+  background-color: #B50033;
+  border-color: #B50033;
+}
+
+.start-activity {
+  position: absolute;
+  top: 35%;
+  left: 42%;
+  padding: 5%;
+  color: white;
+  background-color: #FF94B2 !important;
+  border-color: #FF94B2 !important;
+  border-radius: 100% 25% 90% 35%;
+}
+.start-activity:hover {
+  background-color: #FF94B2;
+  border-color: #FF94B2;
+}
+
+.create-memory {
+  background-color: #60b7bd !important;
+  border-color: #60b7bd !important;
+  color: white;
+}
+
+.header {
+  font-family: mumsies;
+  font-size: 100px;
+  padding: 20px;
+  position: relative;
+}
+.header-1 {
+  font-family: mumsies;
+  font-size: 70px;
+}
+.header-2 {
+  font-family: mumsies;
+  font-size: 45px;
+  padding: 20px;
+}
+
+.shown-card {
+  padding: 40px;
+}
+
+.editActivity {
+  color: white;
+  background-color: #A0E8EC;
+  border-color: #A0E8EC;
+  margin: 5px;
+}
+.editActivity:hover {
+  color: white;
+  background-color: #60B7BD;
+  border-color: #60B7BD;
+}
+
+.act-card-body {
+  font-family: reenie;
+  border-style: dashed;
+  border-color: #60B7BD;
+  border-radius: 15px;
+  border-width: 3px;
+}
+.act-card-title {
+  font-size: 30px;
+}
+
+#cork-bg {
+  position: absolute;
+  top: 57px;
+  left: 0;
+  height: 200%;
+  opacity: 50%;
+}
+
+div.image {
+  background-image: url('linedPaper.jpg');
+  background-repeat: repeat;
+  background-size: 100%;
+  height: 100%;
+}
+
+.add-activity {
+  background-color: pink;
+  border-color: pink;
+  padding: 15px;
+  border-radius: 20% 60% 80% 80%;
+}
+.add-activity:hover {
+  background-color: #FF94B2 !important;
+  border-color: #FF94B2 !important;
+}
+
+.bi-postage-heart-fill {
+  color: #DF4772;
+  transform: rotate(18deg);
+}
+
+.new-act-text {
+  font-family: mumsies;
+  font-size: 95px;
+  padding: 20px;
+  color: black;
+}
+div.bg-img {
+  background-image: url('kierInsight.jpg');
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+}
+
+.mb-3 {
+  margin: 20px;
+}
+
+.createActivity {
+  background-color: #de3b99 !important;
+  border-color: #de3b99 !important;
+  border-radius: 60% 40% 90% 70%;
+  padding: 15px;
+  margin: 20px;
+}
+
+.profile-bg {
+  background-image: url(arrangementNotes.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+.new-memory-bg {
+  background-image: url(postitBoard.png);
+  background-size: cover;
+  height: 100vh;
+}
+.new-memory-text {
+  font-family: mumsies;
+  font-size: 95px;
+  padding: 20px;
+}
+#memory-desc {
+  left: 10%;
+  width: 75%;
+  margin: 0 15px 15px 15px;
+}
+.createMemory {
+  background-color: #60b7bd;
+  border-color: #60b7bd;
+  border-radius: 60% 40% 90% 70%;
+  padding: 20px;
+  position: absolute;
+  right: 20%;
+}
+.createMemory:hover {
+  background-color: #2A8D93;
+  border-color: #2A8D93;
+}
+.memories-bg {
+  background-image: url(corkBoardBg.jpeg);
+  background-size: cover;
+  height: 100vh;
+}
+
+.view-button {
+  background-image: url(blackCircle.png);
+  position: relative;
+  background-color: transparent;
+  border-color: transparent;
+  background-size: cover;
+  color: black;
+}
+.view-button:hover {
+  background-color: rgb(0,0,0, 0.25);
+  border-color: transparent;
+  border-radius: 50%;
+}
+
+.trash-button {
+  background-image: url(redCircle.png);
+  position: relative;
+  background-color: transparent;
+  border-color: transparent;
+  background-size: cover;
+  /* height: 60px;
+  width: 60px; */
+  margin: 20px;
+  color: red;
+}
+.trash-button:hover {
+  background-color: rgb(0,0,0, 0.25);
+  border-color: transparent;
+  border-radius: 50%;
+}
+
+.new-memory {
+  font-family: brushed;
+  font-size: 40px;
+  background-image: url(linedPaper.jpg);
+  background-size: cover;
+  color: black;
+  border-radius: 1%;
+  padding: 20px;
+  border-color: white;
+}
+.new-memory:hover {
+  color: black;
+  border: #60B7BD 2px solid;
+}
+
+.mem-card {
+  font-family: reenie;
+  font-size: 23px;
+  background-color: #FFF9AB;
+}
+.mem-desc {
+  overflow: hidden;
+}
+
+.details {
+  font-family: khand;
+  font-size: 40px;
+  width: 70%;
+  margin: 50px;
+  background-color: #FFF9AB;
+  padding: 30px;
+}
+
+.mt-5 {
+  font-family: reenie;
+  font-size: 40px;
+  position: absolute;
+  left: 17%;
+  color: #60B7BD;
 }

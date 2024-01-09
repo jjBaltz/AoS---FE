@@ -7,9 +7,9 @@ import { Button } from 'react-bootstrap';
 
 function ActivityCard({ activityObj }) {
   return (
-    <Card className="card-body d-flex flex-md-row flex-column px-2" style={{ width: '600px', margin: '20px' }}>
+    <Card className="act-card-body flex-md-row flex-column align-items-center" style={{ width: '550px', margin: '20px' }}>
       <Card.Body>
-        <Card.Title>{activityObj.description}</Card.Title>
+        <Card.Title className="act-card-title">{activityObj.description}</Card.Title>
       </Card.Body>
       <Link href={`/activity/edit/${activityObj.activityId}`} passHref>
         <Button className="editActivity">

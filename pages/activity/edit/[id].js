@@ -12,5 +12,14 @@ export default function EditActivity() {
     getSingleActivity(id).then(setEditActivity);
   }, [id]);
 
-  return (<ActivityForm activityObj={editActivity} />);
+  return (
+    <div className="bg-img">
+      <div className="new-act-text text-center">
+        Update an Activity
+      </div>
+      <div className="act-form justify-content-center align-content-center">
+        <ActivityForm activityObj={editActivity} />
+      </div>
+    </div>
+  );
 }

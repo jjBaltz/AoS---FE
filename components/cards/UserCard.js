@@ -4,9 +4,15 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 function UserCard({ userObj }) {
-  console.warn(userObj);
   return (
-    <Card className="card-body d-flex flex-md-row flex-column px-2" style={{ width: '600px', margin: '20px' }}>
+    <Card
+      id="user-card"
+      style={{
+        width: '60%',
+        height: '53%',
+        padding: '20px',
+      }}
+    >
       <Card.Img src={userObj.photoURL} alt={userObj.displayName} style={{ width: '300px', height: '300px' }} />
       <Card.Body>
         <Card.Title>{userObj.displayName}</Card.Title>

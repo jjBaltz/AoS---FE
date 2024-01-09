@@ -20,10 +20,10 @@ function ShowMemories() {
   }, []);
 
   return (
-    <div className="text-center">
+    <div className="memories-bg text-center">
       <div className="header">Your Memories</div>
-      <Link href="/activity/randomize" passHref>
-        <Button className="newActivity">Start New Memory</Button>
+      <Link href="/activity/random" passHref>
+        <Button className="new-memory">Start New Memory</Button>
       </Link>
       <div className="d-flex flex-wrap">
         {memories.map((memory) => (

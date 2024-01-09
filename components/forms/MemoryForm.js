@@ -49,7 +49,7 @@ function MemoryForm({ obj }) {
   return (
     <Form onSubmit={handleSubmit}>
       {/* Description INPUT  */}
-      <FloatingLabel controlId="floatingTextArea" label="Description" className="mb-3">
+      <FloatingLabel id="memory-desc" controlId="floatingTextArea" label="Description" className="mb-3">
         <Form.Control
           type="textarea"
           placeholder="Description of Memory"
