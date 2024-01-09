@@ -30,12 +30,15 @@ export default function ViewMemory() {
 
   return (
     <>
-      <div className="mt-5 d-flex flex-wrap">
+      <div className="mt-5 d-flex flex-d row wrap text-center">
+        Prompt:
         <div className="mem-act">
           <ActivityCard activityObj={activity} key={memoryDetails.activityId} />
         </div>
-        <div className="text-black ms-5 details">
+        <div className="details text-black text-center justify-content-center d-flex flex-d row wrap">
           <h3>
+            <div className="entry-text">Journal Entry:</div>
+            <br />
             {memoryDetails.description}
           </h3>
           {/* <p>Memory Made: {formattedMemoryTime}</p> */}

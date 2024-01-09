@@ -15,14 +15,14 @@ export default function AddMemory() {
   }, [id]);
 
   return (
-    <>
-      <div className="new-memory-text">
-        <h2>Create Memory</h2>
+    <div className="new-memory-bg">
+      <div className="new-memory-text text-center">
+        Create Memory
         <ActivityCard activityObj={activity} key={activity.activityId} />
       </div>
-      <div className="memory-form">
+      <div className="memory-form align-content-center">
         <MemoryForm activityId={id} />
       </div>
-    </>
+    </div>
   );
 }
